@@ -27,7 +27,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <button onClick={() => this.getAllComics()}></button>
+        <button onClick={() => this.getAllComics()}>Show Comics</button>
+        {this.state.comicList.length ? 
+          this.state.comicList.map(comic => {
+            return (
+              <div>
+                <h2>{comic.name}</h2>
+                <p>{comic.writer} & {comic.artist}</p>
+                <img src={comic.cover} alt="cover"/>
+              </div>
+            )
+          }) : null }
         <pre>
           {JSON.stringify(this.state.comicList, null, 2)}
         </pre>
