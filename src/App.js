@@ -41,10 +41,33 @@ class App extends Component {
     });
   }
 
+  createNewComic = () => {
+    fetch('http://localhost:3000/comics', {
+      method: 'POST',
+      body: JSON.stringify(this.state.form), 
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error.status))
+    .then(response => console.log('Success:', response.status));
+
+    this.setState({
+      form: {
+        name: '',
+        writer: '',
+        artist: '',
+        publisher: '',
+        volume: 0,
+        cover: ''
+      }
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="Form">
+        <div className="form">
           <form>
             <label htmlFor="">Comic Name</label>
             <input id="name" type="text" placeholder="Watchmen, Y: The Last Man..." value={this.state.form.name} onChange={this.handleChange}/>
@@ -53,12 +76,12 @@ class App extends Component {
             <label htmlFor="">Artist</label>
             <input id="artist" type="text" placeholder="Gabriel Ba" value={this.state.form.artist} onChange={this.handleChange}/>
             <label htmlFor="">Publisher</label>
-            <input type="text" />
+            <input type="text" id="publisher" type="text" placeholder="Marvel" value={this.state.form.publisher} onChange={this.handleChange}/>
             <label htmlFor="">Volume</label>
             <input id="volume" type="text" placeholder="1, 2, 3" value={this.state.form.volume} onChange={this.handleChange}/>
             <label htmlFor="">Cover Link</label>
             <input id="cover" type="text" placeholder="" value={this.state.form.cover} onChange={this.handleChange}/>
-            <button type="button" onClick={() => console.log('CLicked!')}>Send</button>
+            <button type="button" onClick={() => this.createNewComic()}>Send</button>
           </form>
         </div>
         <div className="comicList">
@@ -72,7 +95,7 @@ class App extends Component {
                   <img src={comic.cover} alt="cover"/>
                 </div>
               )
-            }) : null }
+            }) : <p>:)</p> }
           <pre>
             {JSON.stringify(this.state.form, null, 2)}
           </pre>
