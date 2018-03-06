@@ -3,6 +3,7 @@
   display: flex;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 h1 {
@@ -43,19 +44,30 @@ input#cover  {
 .comicList {
   display:flex;
   flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  background-color: #093A69;
+  overflow: auto;
+}
+
+.show-comics {
+  display:flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 50%;
   height: 100%;
   background-color: #093A69;
+  overflow: auto;
 }
 
-.comicList button {
+.show-comics button {
   background-color: #5ED994;
   color: #093A69;
 }
 
-.comicList h1 {
+.show-comics h1 {
   color: #5ED994;
 }
 

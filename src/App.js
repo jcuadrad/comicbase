@@ -18,10 +18,26 @@ class App extends Component {
         cover: ''
       },
       publishersLogo: {
-        'Image Comics': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Image_Comics_logo.svg/452px-Image_Comics_logo.svg.png',
-        'Marvel Comics': 'https://vignette.wikia.nocookie.net/injusticefanon/images/a/a8/Marvel-logo.png/revision/latest/scale-to-width-down/640?cb=20160420173246',
-        'DC Comics': 'https://www.seeklogo.net/wp-content/uploads/2013/02/new-dc-comics-vector-logo.png',
-        'Dark Horse Comics': 'https://vignette.wikia.nocookie.net/prototype/images/0/02/Dark_Horse_Comics_logo.png/revision/latest?cb=20120208134542',
+        'Image Comics': {
+          link: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Image_Comics_logo.svg/452px-Image_Comics_logo.svg.png',
+          class: 'image-comics'
+        },
+        'Marvel Comics': {
+          link:'https://vignette.wikia.nocookie.net/injusticefanon/images/a/a8/Marvel-logo.png/revision/latest/scale-to-width-down/640?cb=20160420173246',
+          class: 'marvel-comics'
+        },
+        'Dc Comics': {
+          link: 'https://www.seeklogo.net/wp-content/uploads/2013/02/new-dc-comics-vector-logo.png',
+          class: 'dc-comics'
+        },
+        'Dark Horse Comics': {
+          link: 'https://vignette.wikia.nocookie.net/prototype/images/0/02/Dark_Horse_Comics_logo.png/revision/latest?cb=20120208134542',
+          class: 'darkhorse-comics'
+        },
+        'Vertigo Comics': {
+          link: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Vertigo-Comics-Logo.svg',
+          class: 'vertigo-comics'
+        }
       }
     }
   }
@@ -96,7 +112,7 @@ class App extends Component {
             <button type="button" onClick={() => this.createNewComic()}>SEND</button>
           </form>
         </div>
-        <div className="comicList">
+        <div className={this.state.comicList.length ? 'comicList' : 'show-comics'}>
           {this.state.comicList.length ? 
             this.state.comicList.map(comic => {
               return (
@@ -109,7 +125,7 @@ class App extends Component {
                        logo={this.state.publishersLogo[comic.publisher]}/>
               )
             }) : 
-            <div>
+            <div className="show-comics">
               <button onClick={() => this.getAllComics()}>SHOW COMICS</button>
               <h1>(:</h1> 
             </div> }

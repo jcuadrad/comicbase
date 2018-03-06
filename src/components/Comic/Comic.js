@@ -5,8 +5,8 @@ const Comic = props => {
 
       return (
         <div className="comic">
-          <div className="cover">
-              <img src={props.cover} alt="cover"/>
+          <div className="cover-container">
+              <img className="cover" src={props.cover} alt="cover"/>
           </div>
           <div className="info">
             <h2>{props.name}</h2>
@@ -14,7 +14,7 @@ const Comic = props => {
               <p className="volume">V{props.volume}</p> : 
               <p className="volume">STANDALONE</p>}
             <p>{props.writer} & {props.artist}</p>
-            <img src={props.logo} alt="logo"/>
+            <img className={props.logo.class} src={props.logo.link} alt="logo"/>
           </div>
         </div>
       )
