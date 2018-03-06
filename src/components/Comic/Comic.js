@@ -10,7 +10,9 @@ const Comic = props => {
           </div>
           <div className="info">
             <h2>{props.name}</h2>
-            <p>V{props.volume}</p>
+            {props.volume > 0 ? 
+              <p className="volume">V{props.volume}</p> : 
+              <p className="volume">STANDALONE</p>}
             <p>{props.writer} & {props.artist}</p>
             <img src={props.logo} alt="logo"/>
           </div>

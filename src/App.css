@@ -27,6 +27,10 @@ input {
   text-align: center;
 }
 
+input#cover  {
+  text-transform: none !important;
+}
+
 .form {
   display: flex;
   flex-direction: column;

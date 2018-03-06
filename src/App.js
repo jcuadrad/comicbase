@@ -18,7 +18,10 @@ class App extends Component {
         cover: ''
       },
       publishersLogo: {
-        'Image Comics': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Image_Comics_logo.svg/452px-Image_Comics_logo.svg.png'
+        'Image Comics': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Image_Comics_logo.svg/452px-Image_Comics_logo.svg.png',
+        'Marvel Comics': 'https://vignette.wikia.nocookie.net/injusticefanon/images/a/a8/Marvel-logo.png/revision/latest/scale-to-width-down/640?cb=20160420173246',
+        'DC Comics': 'https://www.seeklogo.net/wp-content/uploads/2013/02/new-dc-comics-vector-logo.png',
+        'Dark Horse Comics': 'https://vignette.wikia.nocookie.net/prototype/images/0/02/Dark_Horse_Comics_logo.png/revision/latest?cb=20120208134542',
       }
     }
   }
@@ -55,7 +58,10 @@ class App extends Component {
       })
     }).then(res => res.json())
     .catch(error => console.error('Error:', error.status))
-    .then(response => console.log('Success:', response.status));
+    .then(response => {
+      console.log('Success:', response.status)
+      this.getAllComics();
+    });
 
     this.setState({
       form: {
