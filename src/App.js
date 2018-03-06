@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import Comic from './components/Comic/Comic.js'
+
 class App extends Component {
 
   constructor(props) {
@@ -14,6 +16,9 @@ class App extends Component {
         publisher: '',
         volume: 0,
         cover: ''
+      },
+      publishersLogo: {
+        'Image Comics': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Image_Comics_logo.svg/452px-Image_Comics_logo.svg.png'
       }
     }
   }
@@ -68,6 +73,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="form">
+          <h1>COMICBASE</h1>
           <form>
             <label htmlFor="">Comic Name</label>
             <input id="name" type="text" placeholder="Watchmen, Y: The Last Man..." value={this.state.form.name} onChange={this.handleChange}/>
@@ -76,29 +82,34 @@ class App extends Component {
             <label htmlFor="">Artist</label>
             <input id="artist" type="text" placeholder="Gabriel Ba" value={this.state.form.artist} onChange={this.handleChange}/>
             <label htmlFor="">Publisher</label>
-            <input type="text" id="publisher" type="text" placeholder="Marvel" value={this.state.form.publisher} onChange={this.handleChange}/>
+            <input id="publisher" type="text" placeholder="Marvel" value={this.state.form.publisher} onChange={this.handleChange}/>
             <label htmlFor="">Volume</label>
             <input id="volume" type="text" placeholder="1, 2, 3" value={this.state.form.volume} onChange={this.handleChange}/>
             <label htmlFor="">Cover Link</label>
             <input id="cover" type="text" placeholder="" value={this.state.form.cover} onChange={this.handleChange}/>
-            <button type="button" onClick={() => this.createNewComic()}>Send</button>
+            <button type="button" onClick={() => this.createNewComic()}>SEND</button>
           </form>
         </div>
         <div className="comicList">
-          <button onClick={() => this.getAllComics()}>Show Comics</button>
           {this.state.comicList.length ? 
             this.state.comicList.map(comic => {
               return (
-                <div key={comic._id}>
-                  <h2>{comic.name} V{comic.volume}</h2>
-                  <p>{comic.writer} & {comic.artist}</p>
-                  <img src={comic.cover} alt="cover"/>
-                </div>
+                <Comic key={comic._id} 
+                       name={comic.name} 
+                       writer={comic.writer} 
+                       artist={comic.artist} 
+                       volume={comic.volume} 
+                       cover={comic.cover} 
+                       logo={this.state.publishersLogo[comic.publisher]}/>
               )
-            }) : <p>:)</p> }
-          <pre>
+            }) : 
+            <div>
+              <button onClick={() => this.getAllComics()}>SHOW COMICS</button>
+              <h1>(:</h1> 
+            </div> }
+          {/* <pre>
             {JSON.stringify(this.state.form, null, 2)}
-          </pre>
+          </pre> */}
         </div>
       </div>
     );

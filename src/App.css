@@ -5,13 +5,35 @@
   height: 100%;
 }
 
+h1 {
+  color: #093A69;
+  font-size: 75px;
+  margin-bottom: 0px;
+}
+
+label {
+  color: #0D3B67;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+input {
+  margin: 17px;
+  width: 325px;
+  height: 50px;
+  text-transform: uppercase;
+  background-color: #EDF5E1;
+  border: none;
+  text-align: center;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 50%;
-  height: 100%;
+  background-color: #5ED994;
 }
 
 .comicList {
@@ -21,6 +43,26 @@
   align-items: center;
   width: 50%;
   height: 100%;
+  background-color: #093A69;
+}
+
+.comicList button {
+  background-color: #5ED994;
+  color: #093A69;
+}
+
+.comicList h1 {
+  color: #5ED994;
+}
+
+button {
+  border: none;
+  padding: 17px 39px;
+  margin: 17px;
+  color: #EDF5E1;
+  font-size: 16px;
+  font-weight: 100;
+  background-color: #093A69;
 }
 
 form {
