@@ -33,32 +33,33 @@ class App extends Component {
   }
 
   handleChange = (event) => {
-    console.log(event.target.id)
     this.setState({
       form: {
         ...this.state.form,
         [event.target.id]: event.target.value
       }
     });
-    console.log(this.state)
   }
 
   render() {
     return (
       <div className="App">
         <div className="Form">
-          <label htmlFor="">Comic Name</label>
-          <input id="name" type="text" placeholder="Watchmen, Y: The Last Man..." value={this.state.form.name} onChange={this.handleChange}/>
-          <label htmlFor="">Writer</label>
-          <input id="writer" type="text" placeholder="Brian Michael Bendis" value={this.state.form.writer} onChange={this.handleChange}/>
-          <label htmlFor="">Artist</label>
-          <input id="artist" type="text" placeholder="Gabriel Ba" value={this.state.form.artist} onChange={this.handleChange}/>
-          <label htmlFor="">Publisher</label>
-          <input type="text" />
-          <label htmlFor="">Volume</label>
-          <input id="volume" type="text" placeholder="1, 2, 3" value={this.state.form.volume} onChange={this.handleChange}/>
-          <label htmlFor="">Cover Link</label>
-          <input id="cover" type="text" placeholder="" value={this.state.form.cover} onChange={this.handleChange}/>
+          <form>
+            <label htmlFor="">Comic Name</label>
+            <input id="name" type="text" placeholder="Watchmen, Y: The Last Man..." value={this.state.form.name} onChange={this.handleChange}/>
+            <label htmlFor="">Writer</label>
+            <input id="writer" type="text" placeholder="Brian Michael Bendis" value={this.state.form.writer} onChange={this.handleChange}/>
+            <label htmlFor="">Artist</label>
+            <input id="artist" type="text" placeholder="Gabriel Ba" value={this.state.form.artist} onChange={this.handleChange}/>
+            <label htmlFor="">Publisher</label>
+            <input type="text" />
+            <label htmlFor="">Volume</label>
+            <input id="volume" type="text" placeholder="1, 2, 3" value={this.state.form.volume} onChange={this.handleChange}/>
+            <label htmlFor="">Cover Link</label>
+            <input id="cover" type="text" placeholder="" value={this.state.form.cover} onChange={this.handleChange}/>
+            <button type="button" onClick={() => console.log('CLicked!')}>Send</button>
+          </form>
         </div>
         <div className="comicList">
           <button onClick={() => this.getAllComics()}>Show Comics</button>
