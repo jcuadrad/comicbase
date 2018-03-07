@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+
 import 'react-select/dist/react-select.css';
 import './App.css';
 
-import Comic from './components/Comic/Comic.js'
+import Comic from './components/Comic/Comic.js';
+
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 class App extends Component {
-
+  
   constructor(props) {
     super(props)
     this.state = {
@@ -48,13 +53,12 @@ class App extends Component {
   }
 
   getAllComics = () => {
-    fetch('http://localhost:3000/comics')
+    fetch(process.env.REACT_APP_SERVER_URI + '/comics')
       .then(data => {
         return data.json()
       })
       .then(info => {
         this.setState({comicList: info});
-        console.log(this.state)
       })
       .catch(error => {
         console.log(error);
@@ -72,7 +76,6 @@ class App extends Component {
           }
         }
       })
-      console.log(this.state)
     } else {
       this.setState({
         form: {
@@ -90,12 +93,10 @@ class App extends Component {
         publisher: selectedOption.value 
       }
     });
-    console.log(selectedOption);
   }
 
   createNewComic = () => {
-    console.log(this.state.form)
-    fetch('http://localhost:3000/comics', {
+    fetch(process.env.REACT_APP_SERVER_URI + '/comics', {
       method: 'POST',
       body: JSON.stringify(this.state.form), 
       headers: new Headers({
@@ -177,7 +178,6 @@ class App extends Component {
         <div className={this.state.comicList.length ? 'comicList' : 'show-comics'}>
           {this.state.comicList.length ? 
             this.state.comicList.map(comic => {
-              console.log(comic);
               return (
                 <Comic key={comic._id} 
                        name={comic.name} 
