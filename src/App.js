@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 import './App.css';
 
 import Comic from './components/Comic/Comic.js'
@@ -13,8 +15,11 @@ class App extends Component {
         name: '',
         writer: '',
         artist: '',
-        publisher: '',
-        volume: 0,
+        publisher: 'Marvel Comics',
+        volume: {
+          volumeNumber: 0,
+          volumeName: ''
+        },
         cover: ''
       },
       publishersLogo: {
@@ -57,15 +62,39 @@ class App extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({
+    if (event.target.id === 'volumeNumber' || event.target.id === 'volumeName') {
+      this.setState({
+        form: {
+          ...this.state.form,
+          volume: {
+            ...this.state.form.volume,
+            [event.target.id]: event.target.value
+          }
+        }
+      })
+      console.log(this.state)
+    } else {
+      this.setState({
+        form: {
+          ...this.state.form,
+          [event.target.id]: event.target.value
+        }
+      });
+    }
+  }
+
+  handleSelectChange = (selectedOption) => {
+    this.setState({ 
       form: {
         ...this.state.form,
-        [event.target.id]: event.target.value
+        publisher: selectedOption.value 
       }
     });
+    console.log(selectedOption);
   }
 
   createNewComic = () => {
+    console.log(this.state.form)
     fetch('http://localhost:3000/comics', {
       method: 'POST',
       body: JSON.stringify(this.state.form), 
@@ -84,8 +113,11 @@ class App extends Component {
         name: '',
         writer: '',
         artist: '',
-        publisher: '',
-        volume: 0,
+        publisher: 'Marvel Comics',
+        volume: {
+          volumeNumber: 0,
+          volumeName: ''
+        },
         cover: ''
       }
     })
@@ -104,9 +136,39 @@ class App extends Component {
             <label htmlFor="">Artist</label>
             <input id="artist" type="text" placeholder="Gabriel Ba" value={this.state.form.artist} onChange={this.handleChange}/>
             <label htmlFor="">Publisher</label>
-            <input id="publisher" type="text" placeholder="Marvel" value={this.state.form.publisher} onChange={this.handleChange}/>
-            <label htmlFor="">Volume</label>
-            <input id="volume" type="text" placeholder="1, 2, 3" value={this.state.form.volume} onChange={this.handleChange}/>
+            <Select
+              className="publisher-select"
+              id="publisher"
+              name="publisher"
+              value={this.state.form.publisher}
+              onChange={this.handleSelectChange}
+              clearable={false}
+              options={[
+                { value: 'Marvel Comics', label: 'Marvel Comics', className: 'option' },
+                { value: 'DC Comics', label: 'DC Comics', className: 'option' },
+                { value: 'Image Comics', label: 'Image Comics', className: 'option' },
+                { value: 'Dark Horse Comics', label: 'Dark Horse Comics', className: 'option' },
+                { value: 'Vertigo Comics', label: 'Vertigo Comics', className: 'option' },
+              ]}
+            />
+            {/* <input id="publisher" type="text" placeholder="Marvel" value={this.state.form.publisher} onChange={this.handleChange}/> */}
+            {this.state.form.volume.volumeNumber == 0 || this.state.form.volume.volumeNumber == null ? (
+              <div className="volumes"> 
+                <label htmlFor="">Volume</label>
+                <input id="volumeNumber" type="number" placeholder="1, 2, 3" value={this.state.form.volume.volumeNumber} onChange={this.handleChange}/>
+              </div>
+            ) : (
+              <div className="volumes-with-name">
+                <div className="volume-number">
+                  <label htmlFor="">Volume</label>
+                  <input className="number-fit" id="volumeNumber" type="number" placeholder="1, 2, 3" value={this.state.form.volume.volumeNumber} onChange={this.handleChange}/>
+                </div>
+                <div className="volume-name">
+                  <label htmlFor="">Volume Name</label>
+                  <input className="name-fit" id="volumeName" type="text" placeholder="1, 2, 3" value={this.state.form.volume.volumeName} onChange={this.handleChange}/>
+                </div>
+               </div>
+            )}
             <label htmlFor="">Cover Link</label>
             <input id="cover" type="text" placeholder="" value={this.state.form.cover} onChange={this.handleChange}/>
             <button type="button" onClick={() => this.createNewComic()}>SEND</button>
@@ -115,6 +177,7 @@ class App extends Component {
         <div className={this.state.comicList.length ? 'comicList' : 'show-comics'}>
           {this.state.comicList.length ? 
             this.state.comicList.map(comic => {
+              console.log(comic);
               return (
                 <Comic key={comic._id} 
                        name={comic.name} 

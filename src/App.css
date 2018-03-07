@@ -26,6 +26,14 @@ input {
   background-color: #EDF5E1;
   border: none;
   text-align: center;
+  font-weight: 200;
+  font-family: 'Open Sans';
+  font-size: 14px;
+}
+
+input::placeholder {
+  font-weight: 200;
+  font-family: 'Open Sans';
 }
 
 input#cover  {
@@ -69,6 +77,68 @@ input#cover  {
 
 .show-comics h1 {
   color: #5ED994;
+}
+
+.publisher-select {
+  margin: 17px;
+  width: 325px;
+  height: 50px;
+  text-transform: uppercase;
+  background-color: #EDF5E1;
+  border: none;
+  text-align: center;
+}
+
+.publisher-select .Select-control {
+  border: none !important;
+  height: 50px;
+  background-color: #EDF5E1;
+  font-weight: 200;
+  font-family: 'Open Sans';
+  font-size: 14px;
+}
+
+.publisher-select .Select-control .Select-value {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.option {
+  background-color: #EDF5E1;
+  font-weight: 200;
+  font-family: 'Open Sans';
+  font-size: 14px;
+}
+
+.volumes {
+  display: flex;
+  flex-direction: column;
+}
+
+.volumes-with-name {
+  display: flex;
+  width: 39%;
+}
+
+.volume-name {
+  display: flex;
+  flex-direction: column;
+}
+
+.volume-number {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.number-fit {
+  width: 59px;
+  margin: 17px 0px;
+}
+
+.name-fit {
+  width: 241px;
 }
 
 button {

@@ -9,6 +9,10 @@ p {
     font-weight: 100;
 }
 
+.medium {
+    font-size: 20px;
+}
+
 .comic {
     display:flex;
     width: 365px;
@@ -38,6 +42,10 @@ p {
     margin: 7px 0px;
 }
 
+.detail {
+    display: flex;
+}
+
 .marvel-comics {
     height: 25px;
 }
@@ -64,6 +72,7 @@ p {
 .volume {
     color: #62DA96;
     font-weight: bold;
+    display: inherit
 }
 
 .cover-container {
